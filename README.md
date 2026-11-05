@@ -6,9 +6,13 @@ role-based access (Admin / Operator).
 
 ## Informasi Aplikasi
 
-1. **Link Deployment (Live App):** `[URL Aplikasi]` *(isi dengan URL deployment)*
-2. **Link Video Demo:** `[URL Video]` *(isi dengan URL video demo)*
-3. **Tech Stack yang Digunakan:**
+1. **Link Deployment (Live App):** https://api-barang.tembus.web.id/login
+2. **Link Video Demo:** https://drive.google.com/file/d/1KaBrt5iL2PxgCvG_bvftumnvU3plbEGH/view?usp=drive_link
+3. **Link Repository Source Code:** https://github.com/zulfikarajisantoso/Aplikasi-Pengelolaan-Barang
+
+> Link repository tidak diwajibkan dalam struktur README pada ketentuan, tetapi boleh dicantumkan sebagai informasi tambahan.
+
+4. **Tech Stack yang Digunakan:**
    - **Frontend:** React, Vite, React Router, Axios, CSS
    - **Backend:** Node.js, Express, JWT, bcryptjs, Multer, ExcelJS
    - **Database:** PostgreSQL (dapat menggunakan Supabase)
