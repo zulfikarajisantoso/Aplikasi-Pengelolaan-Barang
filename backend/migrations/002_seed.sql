@@ -1,0 +1,16 @@
+-- Seed data for Aplikasi Pengelolaan Barang
+--
+-- This file is intentionally NOT used to create the admin user, because the
+-- admin password must be bcrypt-hashed (never stored/committed as plaintext
+-- or a hardcoded hash in SQL). Instead, run the repeatable seed script:
+--
+--   cd backend
+--   npm run seed
+--
+-- which connects via DATABASE_URL, hashes the password with bcryptjs, and
+-- upserts:
+--   - Admin user: username "administrator", password "Admin123"
+--   - Kategori: kode "PK", nama "Perlengkapan Kantor"
+--   - Sub Kategori: nama "Alat Tulis", batas_harga 500000 (under "PK")
+--
+-- See backend/scripts/seed.js for the implementation.
