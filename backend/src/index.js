@@ -12,19 +12,13 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
-const allowedOrigins = (process.env.CORS_ORIGIN || '')
-  .split(',')
-  .map((origin) => origin.trim())
-  .filter(Boolean);
-
-const corsOptions = {
-  origin: allowedOrigins.includes('*') ? true : allowedOrigins,
+app.use(cors({
+  origin: true,
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-};
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));
 
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -39,8 +33,19 @@ app.use('/api/sub-kategori', subKategoriRoutes);
 app.use('/api/barang-masuk', barangMasukRoutes);
 app.use('/api/users', usersRoutes);
 
-app.use((req, res) => {
-  res.status(404).json({ error: 'Endpoint tidak ditemukan.' });
+// Serve static frontend files with anti-cache headers for index.html
+app.use(express.static(path.join(__dirname, '..', 'public'), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('index.html')) {
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    }
+  }
+}));
+
+// Fallback to index.html for SPA routing (React Router) with explicit no-cache
+app.get('*', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
 app.use(errorHandler);
