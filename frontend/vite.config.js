@@ -3,7 +3,13 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  server: {
+server: {
+    host: '127.0.0.1',
     port: 5173,
-  },
+    allowedHosts: [
+      'barang.tembus.web.id'
+    ]
+  }
+
+
 });
